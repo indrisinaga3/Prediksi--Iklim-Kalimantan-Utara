@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -11,7 +12,7 @@ st.set_page_config(page_title="📊 Dashboard Prediksi Iklim", layout="wide")
 # ========== 1️⃣ LOAD DATA ==========
 @st.cache_data
 def load_data():
-    df = pd.read_excel("Data KALUT 2015-2025.xlsx", sheet_name="Data Harian - Table")
+    df = pd.read_excel("Data Jawa Timur_Putri Nurhikmah.xlsx", sheet_name="Data Harian - Table")
     df = df.loc[:, ~df.columns.duplicated()]
     if "kecepatan_angin" in df.columns:
         df = df.rename(columns={"kecepatan_angin":"FF_X"})
@@ -22,8 +23,8 @@ def load_data():
 
 df = load_data()
 
-wilayah = "KALUT"
-st.title(f"🌦️ Dashboard Analisis & Prediksi Iklim — {KALUT}")
+wilayah = "Jawa Timur"
+st.title(f"🌦️ Dashboard Analisis & Prediksi Iklim — {wilayah}")
 
 
 # ========== 2️⃣ Sidebar Filter ==========
@@ -139,7 +140,6 @@ csv = future.to_csv(index=False).encode("utf8")
 st.download_button(
     "📥 Download Dataset Prediksi",
     data=csv,
-    file_name="prediksi_KALUT
--.csv",
+    file_name="prediksi_jawa_timur.csv",
     mime="text/csv"
 )
